@@ -67,7 +67,7 @@ Two directories are modified copies of existing projects. Their original license
 |---|---|---|
 | `SpikeGPT/` | [ridgerchu/SpikeGPT](https://github.com/ridgerchu/SpikeGPT) | BSD 2-Clause, © 2023 Ruijie Zhu — [`SpikeGPT/LICENSE`](SpikeGPT/LICENSE) |
 | `Spikingformer/` | [zhouchenlin2096/Spikingformer](https://github.com/zhouchenlin2096/Spikingformer) | Apache 2.0 — [`Spikingformer/LICENSE`](Spikingformer/LICENSE) |
-| `snn_mlp/` | original to this work | *(to be chosen)* |
+| `snn_mlp/` | original to this work | Apache 2.0, © 2026 Tengteng Lei — [`snn_mlp/LICENSE`](snn_mlp/LICENSE) |
 
 Changes relative to upstream:
 
