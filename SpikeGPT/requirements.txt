@@ -1,0 +1,12 @@
+torch
+matplotlib
+numpy
+tqdm
+torchvision
+scipy
+ninja
+accelerate
+transformers
+datasets
+galois            # src/pgu.py: degree-36 primitive polynomials for the LFSR arrays
+cupy-cuda12x      # src/model.py MultiStepLIFNode(backend='cupy'); match your CUDA (cu11 -> cupy-cuda11x)

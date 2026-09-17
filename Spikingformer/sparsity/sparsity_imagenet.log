@@ -1,0 +1,71 @@
+nohup: ignoring input
+[模型] 加载完成 | epoch=284 | metric=N/A
+[数据] 共 49997 张图, 1000 个类别
+
+[推理] 在 ImageNet val set 上测算 QKV 输出脉冲发放率...
+  batch 50/1563
+  batch 100/1563
+  batch 150/1563
+  batch 200/1563
+  batch 250/1563
+  batch 300/1563
+  batch 350/1563
+  batch 400/1563
+  batch 450/1563
+  batch 500/1563
+  batch 550/1563
+  batch 600/1563
+  batch 650/1563
+  batch 700/1563
+  batch 750/1563
+  batch 800/1563
+  batch 850/1563
+  batch 900/1563
+  batch 950/1563
+  batch 1000/1563
+  batch 1050/1563
+  batch 1100/1563
+  batch 1150/1563
+  batch 1200/1563
+  batch 1250/1563
+  batch 1300/1563
+  batch 1350/1563
+  batch 1400/1563
+  batch 1450/1563
+  batch 1500/1563
+  batch 1550/1563
+
+层名                                          t=0      t=1      t=2      t=3        均值
+----------------------------------------------------------------------------------------
+block[0].attn.q_lif                        12.17%   13.23%   13.51%   14.72%   13.41%
+block[0].attn.k_lif                         2.99%    3.05%    2.96%    3.14%    3.04%
+block[0].attn.v_lif                         6.11%    6.54%    5.56%    5.63%    5.96%
+block[1].attn.q_lif                        10.44%   10.98%   11.24%    9.58%   10.56%
+block[1].attn.k_lif                         3.96%    3.87%    3.77%    3.51%    3.78%
+block[1].attn.v_lif                         5.81%    6.27%    6.29%    5.96%    6.08%
+block[2].attn.q_lif                         8.31%    8.86%    8.79%    7.29%    8.31%
+block[2].attn.k_lif                         4.02%    3.89%    3.79%    3.35%    3.76%
+block[2].attn.v_lif                         6.23%    6.87%    7.31%    6.85%    6.82%
+block[3].attn.q_lif                         5.79%    6.10%    5.82%    4.83%    5.63%
+block[3].attn.k_lif                         3.53%    3.68%    3.64%    3.31%    3.54%
+block[3].attn.v_lif                         5.96%    6.76%    7.73%    6.79%    6.81%
+block[4].attn.q_lif                         6.72%    7.03%    6.83%    6.48%    6.77%
+block[4].attn.k_lif                         2.96%    3.23%    3.25%    3.28%    3.18%
+block[4].attn.v_lif                         5.59%    5.98%    6.42%    5.64%    5.91%
+block[5].attn.q_lif                         5.40%    5.15%    4.82%    4.74%    5.03%
+block[5].attn.k_lif                         2.23%    2.30%    2.27%    2.26%    2.26%
+block[5].attn.v_lif                         3.77%    4.22%    4.56%    4.23%    4.20%
+block[6].attn.q_lif                         6.79%    7.72%    7.74%    7.78%    7.51%
+block[6].attn.k_lif                         2.89%    2.88%    3.09%    3.37%    3.06%
+block[6].attn.v_lif                         4.04%    4.39%    4.20%    3.54%    4.04%
+block[7].attn.q_lif                         5.13%    8.55%    9.56%    9.83%    8.27%
+block[7].attn.k_lif                         3.26%    2.85%    2.75%    2.81%    2.92%
+block[7].attn.v_lif                         5.87%    7.12%    7.18%    7.98%    7.04%
+
+[q_lif 各block均值]                      7.59%    8.45%    8.54%    8.16%    8.19%
+[k_lif 各block均值]                      3.23%    3.22%    3.19%    3.13%    3.19%
+[v_lif 各block均值]                      5.42%    6.02%    6.16%    5.83%    5.86%
+
+[QKV 全局均值]                              5.41%    5.90%    5.96%    5.71%    5.74%
+
+[保存] 结果已保存至 /home/t.lei/finetuning_using_pgu/Spikingformer/sparsity/sparsity_imagenet_qkv.csv
