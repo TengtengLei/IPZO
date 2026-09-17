@@ -93,21 +93,55 @@ Every other hyperparameter is identical across the three experiments. Do not cha
 
 ## Running
 
+### All four modes at once
+
 ```bash
 bash finetune.sh
 ```
 
-The script:
-
-1. Launches four training processes (`train.py`) in parallel, one mode per GPU, each backgrounded.
-2. When a mode finishes training successfully, automatically runs `eval_ppl.py` on its `model_best.pth` to compute test perplexity.
+The script launches four `train.py` processes in parallel — one mode per GPU, each backgrounded — and when a mode finishes training it automatically runs `eval_ppl.py` on that mode's `model_best.pth`.
 
 Monitoring:
 
 ```bash
-tail -f $OUT/log/out_PGUXoR.log
-tail -f $OUT/result/results_val_PGUXoR.txt
+tail -f runs/<experiment>/log/out_PGUXoR.log
+tail -f runs/<experiment>/result/results_val_PGUXoR.txt
 ```
+
+### A single mode by hand
+
+`finetune.sh` is only a launcher; this is exactly what it runs for one mode. Useful if you want to run modes on separate machines, or change one thing without editing the script:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 RWKV_FLOAT_MODE=32 RWKV_LOAD_MODEL=True \
+MEZO_LOG=runs/manual/results_val_PGUXoR.txt \
+python train.py \
+    --mode finetune --data_format bpe \
+    --data_train data/wikitext2/train.txt \
+    --data_valid data/wikitext2/validation.txt \
+    --data_test  data/wikitext2/test.txt \
+    --optimizer_type mezo --mezo_random_mode PGUXoR \
+    --ctx_len 1024 --n_layer 18 --n_embd 768 \
+    --batch_size 8 --n_epoch 4000 --epoch_length 640 \
+    --pretrained_model SpikeGPT-216M.pth \
+    --save_path runs/manual/checkpoint/PGUXoR --epoch_save_freq 500 \
+    --seed 42 --mezo_seed 0x123456789 \
+    --mezo_learning_rate 5e-6 --mezo_lr_schedule constant --mezo_lr_final 5e-6 \
+    --mezo_epsilon 1e-3 --mezo_perturb_nums 5 \
+    --freeze_ratio 0.0
+```
+
+Then score the checkpoint:
+
+```bash
+python eval_ppl.py \
+    --ckpt runs/manual/checkpoint/PGUXoR/model_best.pth \
+    --tag PGUXoR \
+    --out runs/manual/test_ppl_PGUXoR.txt \
+    --data_test data/wikitext2/test.txt
+```
+
+> **`MEZO_LOG` is not optional.** Set it to a different path per mode. See the note under [Output layout](#output-layout) for why.
 
 ## Output layout
 
